@@ -72,10 +72,10 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col className="text-left" sm="6">
-                      <h5 className="card-category">Total Shipments</h5>
-                      <CardTitle tag="h2">Performance</CardTitle>
+                      <h5 className="card-category">Daily Report</h5>
+                      <CardTitle tag="h2">Luphohlo Drainage Model</CardTitle>
                     </Col>
-                    <Col sm="6">
+                    {/* <Col sm="6">
                       <ButtonGroup
                         className="btn-group-toggle float-right"
                         data-toggle="buttons"
@@ -148,7 +148,7 @@ class Dashboard extends React.Component {
                           </span>
                         </Button>
                       </ButtonGroup>
-                    </Col>
+                    </Col> */}
                   </Row>
                 </CardHeader>
                 <CardBody>

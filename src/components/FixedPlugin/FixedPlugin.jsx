@@ -18,7 +18,7 @@
 import React, { Component } from "react";
 
 // reactstrap components
-import { Button } from "reactstrap";
+// import { Button } from "reactstrap";
 
 class FixedPlugin extends Component {
   constructor(props) {
@@ -34,6 +34,9 @@ class FixedPlugin extends Component {
       this.setState({ classes: "dropdown show-dropdown" });
     }
   };
+  handleMouseLeave = () => {
+    this.setState({ classes: "dropdown show-dropdown" });
+  }
   activateMode = mode => {
     switch (mode) {
       case "light":
@@ -47,11 +50,11 @@ class FixedPlugin extends Component {
   render() {
     return (
       <div className="fixed-plugin">
-        <div className={this.state.classes}>
-          <div onClick={this.handleClick}>
+        <div className={this.state.classes} >
+          <div onClick={this.handleClick} >
             <i className="fa fa-cog fa-2x" />
           </div>
-          <ul className="dropdown-menu show">
+          <ul className="dropdown-menu show" onMouseLeave = {this.handleMouseLeave}>
             <li className="header-title">SIDEBAR BACKGROUND</li>
             <li className="adjustments-line">
               <div className="badge-colors text-center">
@@ -102,7 +105,7 @@ class FixedPlugin extends Component {
               />{" "}
               <span className="color-label">DARK MODE</span>{" "}
             </li>
-            <li className="button-container">
+            {/* <li className="button-container">
               <Button
                 href="https://www.creative-tim.com/product/black-dashboard-react"
                 color="primary"
@@ -132,7 +135,7 @@ class FixedPlugin extends Component {
               >
                 Get pro version
               </Button>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
