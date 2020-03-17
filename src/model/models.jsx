@@ -1,52 +1,52 @@
 const defaultModel = {
-    opt: (year) => {
+    opt: () => {
         let dataPoints = [
             {
-                x: new Date(`${year}-01-01`),
+               label: "January",
                 y: 1010.31
             },
             {
-                x: new Date(`${year}-02-01`),
+               label: "February",
                 y: 1012.93
             },
             {
-                x: new Date(`${year}-03-01`),
+               label: "March",
                 y: 1014.64
             },
             {
-                x: new Date(`${year}-04-01`),
+               label: "April",
                 y: 1015.6
             },
             {
-                x: new Date(`${year}-05-01`),
+               label: "May",
                 y: 1015.32
             },
             {
-                x: new Date(`${year}-06-01`),
+               label: "June",
                 y: 1014.47
             },
             {
-                x: new Date(`${year}-07-01`),
+               label: "July",
                 y: 1013.47
             },
             {
-                x: new Date(`${year}-08-01`),
+               label: "August",
                 y: 1012.14
             },
             {
-                x: new Date(`${year}-09-01`),
+               label: "September",
                 y: 1010.12
             },
             {
-                x: new Date(`${year}-10-01`),
+               label: "October",
                 y: 1008.05
             },
             {
-                x: new Date(`${year}-11-01`),
+               label: "November",
                 y: 1007.05
             },
             {
-                x: new Date(`${year}-12-01`),
+               label: "December",
                 y: 1007.88
             },
         ]

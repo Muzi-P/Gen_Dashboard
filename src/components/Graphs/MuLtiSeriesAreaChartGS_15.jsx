@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CanvasJSReact from '../../assets/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-class MultiSeriesAreaChart extends Component {
+class MultiSeriesAreaChartGs15 extends Component {
     render() {
         const { dataPoints, defaultModel, data } = this.props
         const options = {
@@ -18,7 +18,7 @@ class MultiSeriesAreaChart extends Component {
                 labelFontColor: "#9a9a9a",
                 minimum: 1004,
                 maximum: 1017,
-                title: "m.a.s.l"
+                title: "m*3/s"
             },
             axisX: {
                 includeZero: true,
@@ -43,4 +43,4 @@ class MultiSeriesAreaChart extends Component {
     }
 }
 
-export default MultiSeriesAreaChart;
+export default MultiSeriesAreaChartGs15;
