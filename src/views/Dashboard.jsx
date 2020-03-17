@@ -1,30 +1,13 @@
-/*!
+import React, { Component } from "react";
 
-=========================================================
-* Black Dashboard React v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
-
-// reactstrap components
+// import LineGraph from "../components/Graphs/LineGraph"
+import MultiSeriesAreaChart from "../components/Graphs/MuLtiSeriesAreaChart"
+// import axios from 'axios'
+import { InflowsContext } from "../components/Context/context"
 import {
   Button,
-  ButtonGroup,
+  // ButtonGroup,
   Card,
   CardHeader,
   CardBody,
@@ -44,18 +27,27 @@ import {
 
 // core components
 import {
-  chartExample1,
+  // chartExample1,
   chartExample2,
   chartExample3,
   chartExample4
 } from "variables/charts.jsx";
 
-class Dashboard extends React.Component {
+class Dashboard extends Component {
+  static contextType = InflowsContext
   constructor(props) {
     super(props);
     this.state = {
-      bigChartData: "data1"
+      bigChartData: "data1",
+      inflows: [],
+      data: [],
+      years: ['2009', '2010', '2011']
     };
+  }
+
+  handleClick = (e, year) => {
+    e.preventDefault()
+    this.context.changeForecastYear(year)
   }
   setBgChartData = name => {
     this.setState({
@@ -63,6 +55,19 @@ class Dashboard extends React.Component {
     });
   };
   render() {
+    const { reviewYear } = this.context
+
+    let yearInfocus = this.state.years.map((year, key) => {
+      return <DropdownItem
+        href="#pablo"
+        onClick={e => this.handleClick(e, year)}
+        key={key}
+      >
+        {year}
+      </DropdownItem>
+    })
+
+
     return (
       <>
         <div className="content">
@@ -72,92 +77,30 @@ class Dashboard extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col className="text-left" sm="6">
-                      <h5 className="card-category">Daily Report</h5>
+                      <h5 className="card-category">Review Year: {reviewYear}</h5>
                       <CardTitle tag="h2">Luphohlo Drainage Model</CardTitle>
                     </Col>
-                    {/* <Col sm="6">
-                      <ButtonGroup
-                        className="btn-group-toggle float-right"
-                        data-toggle="buttons"
-                      >
-                        <Button
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data1"
-                          })}
-                          color="info"
-                          id="0"
-                          size="sm"
-                          onClick={() => this.setBgChartData("data1")}
+                    <Col>
+                      <UncontrolledDropdown>
+                        <DropdownToggle
+                          caret
+                          className="btn-icon"
+                          color="link"
+                          data-toggle="dropdown"
+                          type="button"
                         >
-                          <input
-                            defaultChecked
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            Accounts
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-single-02" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="1"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data2"
-                          })}
-                          onClick={() => this.setBgChartData("data2")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            Purchases
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-gift-2" />
-                          </span>
-                        </Button>
-                        <Button
-                          color="info"
-                          id="2"
-                          size="sm"
-                          tag="label"
-                          className={classNames("btn-simple", {
-                            active: this.state.bigChartData === "data3"
-                          })}
-                          onClick={() => this.setBgChartData("data3")}
-                        >
-                          <input
-                            className="d-none"
-                            name="options"
-                            type="radio"
-                          />
-                          <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            Sessions
-                          </span>
-                          <span className="d-block d-sm-none">
-                            <i className="tim-icons icon-tap-02" />
-                          </span>
-                        </Button>
-                      </ButtonGroup>
-                    </Col> */}
+                          <i className="tim-icons icon-settings-gear-63" />
+                        </DropdownToggle>
+                        <DropdownMenu aria-labelledby="dropdownMenuLink" right overflow="auto">
+                          {yearInfocus}
+                        </DropdownMenu>
+                      </UncontrolledDropdown>
+                    </Col>
                   </Row>
                 </CardHeader>
                 <CardBody>
-                  <div className="chart-area">
-                    <Line
-                      data={chartExample1[this.state.bigChartData]}
-                      options={chartExample1.options}
-                    />
-                  </div>
+                  {/* <LineGraph dataPoints={this.context.getData()} /> */}
+                  <MultiSeriesAreaChart dataPoints={this.context.getData()} defaultModel={this.context.getDefaultModel()} reviewYear={this.context.reviewYear} />
                 </CardBody>
               </Card>
             </Col>
