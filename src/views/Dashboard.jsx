@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Line, Bar } from "react-chartjs-2";
 // import LineGraph from "../components/Graphs/LineGraph
 import MultiSeriesAreaChart from "../components/Graphs/MuLtiSeriesAreaChart"
-import MultiSeriesAreaChartGs15 from "../components/Graphs/MuLtiSeriesAreaChartGS_15"
+import MuLtiSeriesAreaChartGS15Wrapper from "../components/Graphs/MuLtiSeriesAreaChartGS_15Wrapper"
 // import axios from 'axios'
 import { InflowsContext } from "../components/Context/context"
 import {
@@ -34,7 +34,6 @@ import {
   chartExample3,
   chartExample4
 } from "variables/charts.jsx";
-import { bool } from "prop-types";
 
 class Dashboard extends Component {
   static contextType = InflowsContext
@@ -57,9 +56,9 @@ class Dashboard extends Component {
   handleChange = (e) => {
     this.setState({ checkboxChecked: e.target.checked })
     this.context.handleReviewYear(e.target.value);
-    if (e.target.checked) {
-      this.context.changeForecastYear(e.target.value);
-    }
+    // if (e.target.checked) {
+    //   this.context.changeForecastYear(e.target.value);
+    // }
   }
   setBgChartData = name => {
     this.setState({
@@ -67,9 +66,7 @@ class Dashboard extends Component {
     });
   };
   render() {
-    const { reviewYear, reviewYears } = this.context
-    console.log(reviewYears)
-
+    const { reviewYears } = this.context
     let yearInfocus = this.state.years.map((year, key) => {
       return <InputGroupText className="reveiwYear">
         <Input addon type="checkbox" aria-label="Checkbox for following text input" onChange={e => this.handleChange(e)} value={year} key={year} />
@@ -115,40 +112,7 @@ class Dashboard extends Component {
               </Card>
             </Col>
           </Row>
-          <Row>
-            <Col xs="12">
-              <Card className="card-chart">
-                <CardHeader>
-                  <Row>
-                    <Col className="text-left" sm="6">
-                      {reviewYears.length !== 0 && <h5 className="card-category">Review Year: {reviewYears.toString()}</h5>}
-                      <CardTitle tag="h2">GS 15 Inflows</CardTitle>
-                    </Col>
-                    <Col>
-                      <UncontrolledDropdown>
-                        <DropdownToggle
-                          caret
-                          className="btn-icon"
-                          color="link"
-                          data-toggle="dropdown"
-                          type="button"
-                        >
-                          <i className="tim-icons icon-settings-gear-63" />
-                        </DropdownToggle>
-                        <DropdownMenu aria-labelledby="dropdownMenuLink" right persist overflow="auto" className="reviewYearMenu">
-                          {yearInfocus}
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                    </Col>
-                  </Row>
-                </CardHeader>
-                <CardBody>
-                  {/* <LineGraph dataPoints={this.context.getData()} /> */}
-                  <MultiSeriesAreaChartGs15 data={this.context.populateDataPoints()} dataPoints={this.context.getData()} defaultModel={this.context.getDefaultModel()} reviewYear={this.context.reviewYear} />
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
+          <MuLtiSeriesAreaChartGS15Wrapper />
           <Row>
             <Col lg="4">
               <Card className="card-chart">

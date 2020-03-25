@@ -4,7 +4,8 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class MultiSeriesAreaChart extends Component {
     render() {
-        const { dataPoints, defaultModel, data } = this.props
+        const { data } = this.props
+        
         const options = {
             theme: "dark2",
             backgroundColor: "rgba(29,140,248,0)",

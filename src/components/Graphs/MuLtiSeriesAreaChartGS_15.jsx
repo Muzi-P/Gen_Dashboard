@@ -4,7 +4,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class MultiSeriesAreaChartGs15 extends Component {
     render() {
-        const { dataPoints, defaultModel, data } = this.props
+        const { data } = this.props
         const options = {
             theme: "dark2",
             backgroundColor: "rgba(29,140,248,0)",
@@ -16,8 +16,8 @@ class MultiSeriesAreaChartGs15 extends Component {
                 gridColor: "rgba(29,140,248,0.2)",
                 gridThickness: 2,
                 labelFontColor: "#9a9a9a",
-                minimum: 1004,
-                maximum: 1017,
+                // minimum: 1004,
+                maximum: 20,
                 title: "m*3/s"
             },
             axisX: {
